@@ -1,0 +1,85 @@
+{% extends 'based.html'%}
+{% block body %}
+
+{% include 'sections/title.html' %}
+<section class="bg-light-gray box-hover"> 
+    <div class="container">
+        <div class="process-steps-xs " style="margin-left: 20px;">
+            <ul class="left-holder row no-margin-bottom">
+                <li class="col-6 col-md-3">
+                        <div class="process-step-xs center-holder">
+                            <div class="process-step-icon"><span class="text-theme-color alt-font font-size48 sm-font-size42 xs-font-size36 font-weight-700">01</span></div>
+                            <h3>Teknik Bilgiler</h3>
+                        </div>
+                </li>
+                <li class="col-6 col-md-3">
+                        <div class="process-step-xs center-holder">
+                            <div class="process-step-icon"><span class=" text-theme-color alt-font font-size48 sm-font-size42 xs-font-size36 font-weight-700">02</span></div>
+                            <h3>Kişisel Bilgiler</h3>
+                        </div>
+                </li>
+                <li class="col-6 col-md-3">
+                        <div class="process-step-xs center-holder xs-no-margin-bottom">
+                            <div class="process-step-icon"><span class="alt-font font-size48 sm-font-size42 xs-font-size36 font-weight-700">03</span></div>
+                            <h3>Sonuç</h3>
+                        </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="contact-form-box margin-30px-top">
+            <form method="POST" action="" class="">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
+                <div class="row">
+                    <h1 class="col-md-12">Teknik Bilgileriniz</h1>
+                    <div class="col-md-6">
+                        <label for="gyetuketimi">Geçen Yılki Enerji Tüketimi(KWH):</label>
+                        <input type="text" name="gyetuketimi" id="gyetuketimi" data-constraints=" @NotEmpty">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="sgucu">Sözleşme Gücü(KW):</label>
+                        <input type="text" name="sgucu" id="sgucu" data-constraints=" @NotEmpty">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="area">Alan (M2):</label>
+                        <input type="text" name="area" id="area"  data-constraints="@NotEmpty"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="easbedeli">Enerji Alış Satış Bedeli:</label>
+                        <input type="text" name="easbedeli" id="easbedeli" data-constraints="@NotEmpty">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="gsaat">GES Yeri Yıllık Güneşlenme Saati:</label>
+                        <input type="text" name="gsaat" id="gsaat" data-constraints="@NotEmpty">
+                        <lable></lable>
+                    </div> 
+                    <h1 class="col-md-12">Kişisel Bilgileriniz</h1>
+                    <div class="col-md-6">
+                        <label for="isim">Isim</label>
+                        <input type="text" name="isim" id="isim" data-constraints="@LettersOnly @NotEmpty">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="soyisim">Soyisim</label>
+                        <input type="text" name="soyisim" id="soyisim" data-constraints="@LettersOnly @NotEmpty">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone">Numara</label>
+                        <input type="text" name="phone" id="phone" data-constraints="@Phone">
+                    </div>
+                    <div class="col-md-6">
+                        <lable for="email">Email</lable>
+                        <input type="text" name="email" id="email" data-constraints="@Email @NotEmpty">
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="butn" href="/ongrid/2">Devam Et</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+                                
+                                    
+    </div>
+</section>
+                        
+
+{% endblock %}

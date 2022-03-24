@@ -1,0 +1,52 @@
+{% extends 'admin/based.html' %}
+{% block body %}
+<div class="main-wrapper">
+    <div class="card card-white">
+        <div class="card-heading clearfix">
+            <h4 class="card-title">Basic example</h4>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Isim</th>
+                        <th>Lokasyon</th>
+                        <th>Arazi (km2)</th>
+                        <th>Aciklama1</th>
+                        <th>Malzemeler</th>
+                        <th>Grafik Aciklama</th>
+                        <th>Paranin Geri Dönüşüm Süresi</th>
+                        <th>Kazanılan Güç</th>
+                        <th>Kazanç</th>
+                        <th><a href="{{ url_for('pj_create') }}" class="btn btn-primary">Proje Ekle</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for m in model %}
+                        <tr>
+                            <th scope="row"><a>{{ m.id }}</a></th>
+                            <td><a>{{ m.name }}</a></td>
+                            <td><a>{{ m.location }}</a></td>
+                            <td><a>{{ m.area }}</a></td>
+                            <td><a>{{ m.explanation }}</a></td>
+                            <td><a>{{ m.products }}</a></td>
+                            <td><a>{{ m.gExplanation }}</a></td>
+                            <td><a>{{ m.rtMoney }}</a></td>
+                            <td><a>{{ m.pPower }}</a></td>
+                            <td><a>{{ m.profit }}</a></td>
+
+                            <td>
+                                <!-- <a href="/admin/pj-info/{{ m.id }}" class="btn btn-success">Bak</a> -->
+                                <a href="/admin/pj-delete/{{ m.id }}" class="btn btn-danger">Sil</a>
+                                <a href="/admin/pj-update/{{ m.id }}" class="btn btn-warning">Güncelle</a>
+                        </td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

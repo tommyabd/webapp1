@@ -1,0 +1,31 @@
+{% extends 'based.html'%}
+{% block body%}
+{% include 'sections/title.html'%}
+    
+        <!-- start we work section -->
+        <section class="box-hover">
+            <div class="container">
+                <div class="section-heading">
+                    <h3>Uygulamalarımız</h3>
+                    <p class="width-55 sm-width-75 xs-width-95">Kendinize Uygun Olarak "OnGrid" veya "OffGride" İşlemlerinden Birini Seçe Bilirsiniz</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 sm-margin-20px-bottom">
+                        <div class="feature-box-01">
+                            <a href="{{ url_for('ongrid') }}"><h4 style="padding: none;" class="font-size18 margin-10px-bottom">OnGrid</h4></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 sm-margin-20px-bottom">
+                        <div class="feature-box-01">
+                            <a href="{{ url_for('offgrid') }}"><h4 class="font-size18 margin-10px-bottom">OffGrid</h4></a>
+                        </div>
+                    </div>
+
+                </div>
+                                    
+            </div>
+        </section>
+        <!-- end we work section -->
+                    
+{% endblock %}

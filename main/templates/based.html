@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- metas -->
+    <meta charset="utf-8">
+    <meta name="author" content="Chitrakoot Web" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="Multipurpose Business and Admin HTML5 Template" />
+    <meta name="description" content="Fabrex - Multipurpose Business and Admin Template" />
+
+    <!-- title  -->
+    <title>GQSolar</title>
+
+    <!-- favicon -->
+   
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/plugins.css') }}" />
+
+    <!-- revolution slider css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rev_slider/settings.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rev_slider/layers.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rev_slider/navigation.css') }}">
+
+    <!-- search css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='search/search.css') }}" />
+
+    <!-- custom css -->
+    
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" id="colors">
+
+</head>
+
+<body>
+
+    <!-- start page loading -->
+    <div id="preloader">
+        <div class="row loader">
+            <div class="loader-icon"></div>
+        </div>
+    </div>
+    <!-- end page loading -->
+
+    <div class="main-wrapper">
+
+        {% include 'sections/header.html'%}
+                    
+        {% block body %}
+
+        {% endblock %}
+
+        {% include 'sections/footer.html'%}
+
+    </div>
+
+
+  <!-- all js include start -->
+
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+
+    <!-- modernizr js -->
+    <script src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
+
+    <!-- bootstrap -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <!-- navigation -->
+    <script src="{{ url_for('static', filename='js/nav-menu.js') }}"></script>
+
+    <!-- serch -->
+    <script src="{{ url_for('static', filename='search/search.js') }}"></script>
+
+    <!-- owl carousel -->
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+
+    <!-- jquery.counterup.min -->
+    <script src="{{ url_for('static', filename='js/jquery.counterup.min.js') }}"></script>
+
+    <!-- stellar js -->
+    <script src="{{ url_for('static', filename='js/jquery.stellar.min.js') }}"></script>
+
+    <!-- waypoints js -->
+    <script src="{{ url_for('static', filename='js/waypoints.min.js') }}"></script>
+
+    <!-- tab js -->
+    <script src="{{ url_for('static', filename='js/tabs.min.js') }}"></script>
+
+    <!-- countdown js -->
+    <script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
+
+    <!-- jquery.magnific-popup js -->
+    <script src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+
+    <!-- isotope.pkgd.min js -->
+    <script src="{{ url_for('static', filename='js/isotope.pkgd.min.js') }}"></script>
+
+    <!--  chart js -->
+   <script src="{{ url_for('static', filename='js/chart.min.js') }}"></script>
+   
+    <!--  clipboard js -->
+    <script src="{{ url_for('static', filename='js/clipboard.min.js') }}"></script>
+
+    <!--  prism js -->
+    <script src="{{ url_for('static', filename='js/prism.js') }}"></script>
+
+    <!-- revolution slider js files start -->
+    <script src="{{ url_for('static', filename='js/rev_slider/jquery.themepunch.tools.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rev_slider/jquery.themepunch.revolution.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rev_slider/extensions/revolution.extension.actions.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rev_slider/extensions/revolution.extension.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rev_slider/extensions/revolution.extension.kenburn.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rev_slider/extensions/revolution.extension.layeranimation.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rev_slider/extensions/revolution.extension.migration.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rev_slider/extensions/revolution.extension.navigation.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rev_slider/extensions/revolution.extension.parallax.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rev_slider/extensions/revolution.extension.slideanims.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rev_slider/extensions/revolution.extension.video.min.js') }}"></script>
+    <!-- revolution slider js files end -->
+
+    <!-- map js -->
+    <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+
+    <!-- custom scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <!-- contact form scripts -->
+    <script src="{{ url_for('static', filename='js/mailform/jquery.form.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mailform/jquery.rd-mailform.min.c.js') }}"></script>
+
+    <!-- all js include end -->
+</body>

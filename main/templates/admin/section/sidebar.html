@@ -1,0 +1,53 @@
+                <!-- start page sidebar -->
+                <div class="page-sidebar">
+                    <a class="logo-box" href="/admin">
+                        <span>GQS Admin</span>
+                        <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
+                        <i class="icon-close" id="sidebar-toggle-button-close"></i>
+                    </a>
+                    <div class="page-sidebar-inner">
+                        <div class="page-sidebar-menu">
+                            <ul class="accordion-menu">
+                                <li>
+                                    <a href="/admin">
+                                        <i class="menu-icon icon-home4"></i><span>Dashboard</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="menu-icon icon-inbox"></i><span>Ges</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('admin_mevzuatlar') }}">
+                                        <i class="menu-icon icon-flash_on"></i><span>Mevzuatlar</span><i class=""></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('admin_projeler') }}">
+                                        <i class="menu-icon icon-layers"></i><span>Projeler</span><i class=""></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('admin_bilgilendirme') }}">
+                                        <i class="menu-icon icon-format_list_bulleted"></i><span>Bilgiler</span><i class=""></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('admin_ongrid_text') }}">
+                                        <i class="menu-icon icon-radio_button_unchecked"></i><span>OnGrid Text</span><i></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('admin_iletisim') }}">
+                                        <i class="menu-icon icon-info"></i><span>İletişim Bilgileri</span><i></i>
+                                    </a>
+                                </li>
+
+                                <li class="menu-divider"></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page sidebar -->

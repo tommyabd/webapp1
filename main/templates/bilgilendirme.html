@@ -1,0 +1,18 @@
+{% extends 'based.html'%}
+{% block body %}
+{% include 'sections/title.html'%}
+<section>
+    <div class="container">
+        <div class="row">
+            {% include 'sections/bg_left.html'%}
+            <div class="col-lg-8 col-md-12 order-1 order-lg-2 ">   
+                <div class="services-single-right margin-15px-top">
+                    <h5 class="font-weight-600">{{ content.title }}</h5>
+                    <div class="margin-40px-bottom sm-margin-30px-bottom"><img src="{{ url_for('static', filename='img/Bilgilendirme/{}'.format(content.img)) }}" class="border-radius-5 box-shadow-primary" alt="" /></div>
+                </div><p class="margin-30px-bottom sm-margin-20px-bottom width-95">{{ content.text|safe }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+{% endblock %}

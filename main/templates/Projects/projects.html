@@ -1,0 +1,34 @@
+{% extends 'based.html' %}
+{% block body %}
+
+    {% include 'sections/title.html'%}
+
+        <!-- start we offer section -->
+        <section>
+            <div class="container">
+                <div class="section-heading">
+                    <h3>Projeler</h3>
+                </div>
+                <div class="row">
+                    {% for i in projects%}
+                    <div class="col-lg-4 col-md-6 margin-30px-bottom sm-margin-20px-bottom">
+                        <div class="service-simple">
+                            <div class="overflow-hidden">
+                                <img alt="img" src="{{ url_for('static', filename='img/{}'.format(i.img)) }}" />
+                            </div>
+                            <div class="service-simple-inner">
+                                <h4>{{ i.name }}</h4>
+                                <div class="separator-line-horrizontal-full bg-medium-gray margin-10px-top margin-20px-bottom"></div>
+                                <p>{{ i.explanation }}</p>
+                                <a href="/pr-info/{{ i.id }}" class="butn small"><span>Incele</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- start we offer section -->
+
+
+{% endblock %}

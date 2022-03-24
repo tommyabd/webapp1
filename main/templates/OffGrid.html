@@ -1,0 +1,255 @@
+{% extends 'based.html'%}
+{% block body %}
+{% include 'sections/title.html' %}
+
+<section class="bg-light-gray box-hover">
+    <div class="container">            
+            <div class="contact-form-box margin-30px-top">
+                <div class="process-steps-xs position-relative margin-50px-bottom" style="margin-left: 20px;">
+                    <ul class="left-holder row no-margin-bottom">
+                        <li class="col-6 col-md-3">
+                                <div class="process-step-xs center-holder">
+                                    <div class="process-step-icon"><span class="text-theme-color alt-font font-size48 sm-font-size42 xs-font-size36 font-weight-700">01</span></div>
+                                    <h3>Teknik Bilgiler</h3>
+                                </div>
+                        </li>
+                        <li class="col-6 col-md-3">
+                                <div class="process-step-xs center-holder">
+                                    <div class="process-step-icon"><span class=" text-theme-color alt-font font-size48 sm-font-size42 xs-font-size36 font-weight-700">02</span></div>
+                                    <h3>Kişisel Bilgiler</h3>
+                                </div>
+                        </li>
+                        <li class="col-6 col-md-3">
+                                <div class="process-step-xs center-holder xs-no-margin-bottom">
+                                    <div class="process-step-icon"><span class="alt-font font-size48 sm-font-size42 xs-font-size36 font-weight-700">03</span></div>
+                                    <h3>Sonuç</h3>
+                                </div>
+                        </li>
+                    </ul>
+                </div>
+                <form method="post" action="" class="">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="isim">Isim</label>
+                            <input type="text" name="isim" id="isim" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="soyisim">Soyisim</label>
+                            <input type="text" name="soyisim" id="soyisim" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="phone">Numara</label>
+                            <input type="text" name="phone" id="phone" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-12">
+                            <lable for="email">Email</lable>
+                            <input type="text" name="email" id="email" data-constraints="@Email @NotEmpty">
+                        </div>
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Buzdolabı:</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="4adet" placeholder="Adet" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="41stw" placeholder="1saatTuk.W:" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="4gks" placeholder="Gunduz Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="4aks" placeholder="Aksam Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Tv:</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="5adet" placeholder="Adet" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="51stw" placeholder="1saatTuk.W:" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="5gks" placeholder="Gunduz Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="5aks" placeholder="Aksam Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Lamba:</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="6adet" placeholder="Adet" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="61stw" placeholder="1saatTuk.W:" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="6gks" placeholder="Gunduz Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="6aks" placeholder="Aksam Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Bulaşık Makinası :</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="7adet" placeholder="Adet" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="71stw" placeholder="1saatTuk.W:" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="7gks" placeholder="Gunduz Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="7aks" placeholder="Aksam Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Çamaşır Makinası :</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="8adet" placeholder="Adet" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="81stw" placeholder="1saatTuk.W:" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="8gks" placeholder="Gunduz Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="8aks" placeholder="Aksam Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Elektrik Süpürgesi :</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="9adet" placeholder="Adet" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="91stw" placeholder="1saatTuk.W:" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="9gks" placeholder="Gunduz Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="9aks" placeholder="Aksam Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Şobet/Klima :</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="10adet" placeholder="Adet" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="101stw" placeholder="1saatTuk.W:" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="10gks" placeholder="Gunduz Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="10aks" placeholder="Aksam Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Bilgisayar :</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="11adet" placeholder="Adet" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="111stw" placeholder="1saatTuk.W:" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="11gks" placeholder="Gunduz Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="11aks" placeholder="Aksam Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Ütü :</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="12adet" placeholder="Adet" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="121stw" placeholder="1saatTuk.W:" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="12gks" placeholder="Gunduz Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="12aks" placeholder="Aksam Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Şarj :</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="13adet" placeholder="Adet" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="131stw" placeholder="1saatTuk.W:" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="13gks" placeholder="Gunduz Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="1aks" placeholder="Aksam Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Ketıl:</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="14adet" placeholder="Adet" data-constraints="@LettersOnly @NotEmpty">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="string" name="141stw" placeholder="1saatTuk.W:" data-constraints="@Phone">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="14gks" placeholder="Gunduz Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="string" name="14aks" placeholder="Aksam Kullanim Saati" data-constraints="@Email @NotEmpty">
+                        </div>
+
+                        <div class="col-md-2 margin-15px-top">
+                            <a>Gepa:</a>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="string" name="gepa" placeholder="İlinizin Günlük Güneşlenme Süresi (h)" data-constraints="@Email @NotEmpty">
+                        </div>
+
+
+                        <div class="mfControls col-md-5">
+                            <button type="submit" class="butn">Devam</button>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>                       
+
+    </div>
+</section>
+
+{% endblock %}

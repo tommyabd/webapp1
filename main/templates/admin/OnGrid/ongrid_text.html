@@ -1,0 +1,36 @@
+{% extends 'admin/based.html' %}
+{% block body %}
+<div class="main-wrapper">
+    <div class="card card-white">
+        <div class="card-heading clearfix">
+            <h4 class="card-title">Ongrid Text</h4>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlık</th>
+                        <th>Metin</th>
+                        <!-- {% for i in range(0,46) %}
+                            <th>-</th>
+                        {% endfor %} -->
+                        <th><a href="{{ url_for('og_create') }}" class="btn btn-primary">Mevzuat Ekle</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for m in content %}
+                        <tr>
+                            <th scope="row"><a>{{ m.id }}</a></th>
+                            <td><a>{{ m.title }}</a></td>
+                            <td><a>{{ m.text }}</a></td>
+                            <td><a href="{{ url_for('og_delete',id=m.id) }}" class="btn btn-danger">Sil</a>
+                            <a href="{{url_for('og_update', id=m.id) }}" class="btn btn-warning">Guncelle</a></td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

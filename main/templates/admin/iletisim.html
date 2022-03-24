@@ -1,0 +1,34 @@
+{% extends 'admin/based.html'%}
+{% block body %}
+<div class="card card-white">
+    <div class="card-heading clearfix">
+        <h4 class="card-title">İletişim</h4>
+    </div>
+    <div class="card-body">
+        <form action="" method="POST", class="needs-validation" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <div class="form-grozp">
+                        <label for="title">Email</label>
+                        <input tybe="text" id="email" class="form-control"  value="{{ content.email }}" name="email">
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <div class="form-grozp">
+                        <label for="adress">Adress</label>
+                        <input tybe="text" id="adress" class="form-control"  value="{{ content.adress }}" name="adress">
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <div class="form-grozp">
+                        <label for="numara">Numara</label>
+                        <input tybe="text" id="numara" class="form-control"  value="{{ content.number }}" name="numara">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-danger">Gönder</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

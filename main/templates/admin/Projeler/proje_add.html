@@ -1,0 +1,52 @@
+{% extends 'admin/based.html' %}
+{% block body %}
+{{ ckeditor.load() }}
+<div class="card card-white">
+    <div class="card-heading clearfix">
+        <h4 class="card-title">Proje Ekleme</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST", class="needs-validation" enctype = "multipart/form-data" novalidate>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
+
+                    <lable for="name">Projenin Ismi</lable>
+                    <input type="text" class="form-control" name="name" id="name">
+
+                    <lable for="location">Projenin Bölgesi</lable>
+                    <input type="text" class="form-control" name="location" id="location">
+
+                    <lable for="area">Projenin ALanı(km2)</lable>
+                    <input type="number" class="form-control" name="area" id="area">
+
+                    <lable for="exp">Açıklama 1</lable>
+                    <input type="text" class="form-control" name="exp" id="exp">
+
+                    <lable for="grafic">Grafigin Aciklanmasi</lable>
+                    <input type="text" class="form-control" name="grafic" id="grafic">
+
+                    <lable for="rtm">Paranın Geri Dönüşümü</lable>
+                    <input type="number" class="form-control" name="rtm" id="rtm">
+
+                    <lable for="ppower">Kazanılan Güç</lable>
+                    <input type="number" class="form-control" name="ppower" id="ppower">
+
+                    <lable for="profit">Kazanç</lable>
+                    <input type="number" class="form-control" name="profit" id="profit">
+
+                    <label for="photo">Foto</label>
+                    <input type="file", name="photo", id="photo">
+                    
+                </div>
+                <div class="col-md-4 mb-3">
+                    <button type="Submit" class="btn btn-warning">Kaydet</button>
+                </div>
+
+            </div>
+            
+        </form>
+
+    </div>
+</div>
+{% endblock %}

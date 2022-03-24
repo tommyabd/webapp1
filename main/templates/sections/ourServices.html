@@ -1,0 +1,23 @@
+<!-- start what we offer section -->
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h3>Projelerimiz</h3>
+        </div>
+        <div class="owl-carousel owl-theme" id="services-carousel">
+            {% for i in projects %}
+                <div class="service-box">
+                    <a href="/pr-info/{{ i.id }}"><div class="img-holder"><img alt="service-img" src="{{ url_for('static', filename='img/{}'.format(i.img)) }}"></div></a>
+                    <div class="clearfix service-inner-box">
+                        <div class="service-icon-box"><i class="icon-presentation"></i></div>
+                        <div class="service-content-box">
+                            <h3><a href="javascript:void(0)">{{ i.name }}</a></h3>
+                            <p>{{ i.explanation }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- end service section --

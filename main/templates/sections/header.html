@@ -1,0 +1,65 @@
+        <!-- start header section -->
+        <header class="header-style2">
+            <div class="navbar-default">
+
+                <!-- Start Top Search -->
+                <div class="top-search bg-theme">
+                    <div class="container-fluid">
+                        <form class="search-form" action="search.html" method="GET" accept-charset="utf-8">
+                            <div class="input-group">
+                                <span class="input-group-addon cursor-pointer">
+                                    <button class="search-form_submit fas fa-search font-size18 text-white" type="submit"></button>
+                                </span>
+                                <input type="text" class="search-form_input form-control" name="s" autocomplete="off" placeholder="Type & hit enter...">
+                                <span class="input-group-addon close-search"><i class="fas fa-times font-size18 line-height-28 margin-5px-top"></i></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- End Top Search -->
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-12">
+                            <div class="menu_area alt-font">
+                                <nav class="navbar navbar-expand-lg navbar-light no-padding">
+
+                                    <div class="navbar-header navbar-header-custom">
+                                        <!-- Start Logo -->
+                                        <a href="/" class="navbar-brand ml-auto logo2" id="nav">GQSolar</a>
+                                        <!-- End Logo -->
+                                    </div>
+
+                                    <div class="navbar-toggler"></div>
+                                    
+                                    <!-- Menu Area -->
+                                    <ul class="navbar-nav ml-auto" id="nav" style="display: none;">
+                                        <li><a href="/">Ana Sayfa</a></li>
+                                        <li><a href="/projects">Projeler</a></li>
+                                        <li><a href="/mevzuatlar">Mevzuatlar</a></li>                         
+                                        <li><a href="{{ url_for('bilgilendirme', id=1) }}">Bilgilendirme</a></li>
+                                        <li><a href="{{ url_for('projelendirme') }}">Projelendirme</a></li>                             
+                                        <li><a href="{{ url_for('contactus')}}">Bize Ulasin</a></li>
+                                    </ul>
+                                           
+                                    <!-- End Menu Area -->
+
+                                    <!-- Start Atribute Navigation -->
+                                    <div class="attr-nav sm-no-margin sm-margin-65px-right xs-margin-60px-right">
+                                        <ul>
+                                            <li class="dropdown sm-margin-20px-right">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- End Atribute Navigation -->
+
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <!-- end header section -->
+
+        

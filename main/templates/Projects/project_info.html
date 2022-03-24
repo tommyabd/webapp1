@@ -1,0 +1,45 @@
+{% extends 'based.html' %}
+
+{% block body %}
+{% include 'sections/title.html'%}
+
+<section>
+    <div class="container">
+        <div class="row">
+            {% include 'sections/projects/pr_left.html'%}
+            <div class="col-lg-8 col-md-12 order-1 order-lg-2 ">   
+                {% include 'sections/projects/pr_profitInfo.html'%}
+                <div class="services-single-right margin-15px-top">
+                    <h5 class="font-weight-600">{{ content.name }}</h5>
+                    <div class="margin-40px-bottom sm-margin-30px-bottom"><img src="{{ url_for('static', filename='img/{}'.format(content.img)) }}" class="border-radius-5 box-shadow-primary" alt="" /></div>
+                </div><p class="margin-30px-bottom sm-margin-20px-bottom width-95">{{ content.explanation }}</p>
+                <!-- <div class="row">
+                    <div class="inner-title">
+                        <h6>Kullanılan Malzemeler</h6>
+                        <ul class="list-style-6">
+                            <li>24 - Hours Emergency Services</li>
+                            <li>Expert Advisors</li>
+                            <li>Quick Support</li>
+                            <li>Quick Support</li>
+                            <li>No Charges Services</li>
+                        </ul>
+                    </div> -->
+                <!-- </div> -->
+                <div class="row">
+                    <div class="inner-title margin-20px-top">
+                        <h5>Üretim Grafiği</h5>
+                        <p>{{ content.gExplanation }}</p>
+                        <div class="card width-75 sm-width-85 xs-width-100 center-col">
+                            <div class="card-body">
+                                <canvas id="chBar" height="200"></canvas>
+                            </div>
+                        </div>        
+                                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'based.html'%}
+{% block body %}
+{% include 'sections/title.html' %}
+
+    <!-- start faq section -->
+    <section>
+        <div class="container">
+            <div class="process-steps-xs position-relative margin-100px-left" >
+                <ul class="left-holder row no-margin-bottom">
+                        <li class="col-4 col-md-3">
+                                <div class="process-step-xs center-holder">
+                                <div class="process-step-icon"><span class="alt-font font-size48 sm-font-size42 xs-font-size36 font-weight-700">01</span></div>
+                                <h3>Teknik Bilgiler</h3>
+                            </div>
+                        </li>
+                        <li class="col-4 col-md-3">
+                                <div class="process-step-xs center-holder">
+                                    <div class="process-step-icon"><span class=" alt-font font-size48 sm-font-size42 xs-font-size36 font-weight-700">02</span></div>
+                                    <h3>Kişisel Bilgiler</h3>
+                                </div>
+                        </li>
+                        <li class="col-4 col-md-3">
+                                <div class="process-step-xs center-holder xs-no-margin-bottom">
+                                    <div class="process-step-icon"><span class="text-theme-color  alt-font font-size48 sm-font-size42 xs-font-size36 font-weight-700">03</span></div>
+                                    <h3>Sonuç</h3>
+                                /div>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="section-heading">
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-5 col-md-12 offset-lg-1">
+                        <div class="feedback-box box-shadow-primary">
+                            <table class="table table-dark table-striped position-relative box-hover">
+                                <thead>
+                                    <tr>
+                                        <th  style="float:right">Değerler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                </tbody>
+                            </table>
+                            <div class="alert alert-success alert-dismissible"><a>Mail'inizi Kontrol Etmeyi Unutmayın</a></div>
+                            <div class="btn btn-warning"><a  href="{{ url_for('fd', filename=filename) }}">Dosyanızı Indirmeyi Unutmayın:</a></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 sm-margin-30px-bottom">
+                        <div id="accordion" class="accordion-style">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                {% for i in content %}
+                                    <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    {{ i.title }}
+                                    </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            {{ i.text|safe }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- end faq section -->
+                
+
+{% endblock %}

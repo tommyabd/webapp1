@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- metas -->
+    <meta charset="utf-8">
+    <meta name="author" content="GQSolar Web" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="admin,dashboard" />
+    <meta name="description" content="GQSolar AdmınPanel" />
+
+    <!-- title  -->
+    <title>GQSolar AdminPanel</title>
+
+    <!-- favicon -->
+
+
+    <!-- common plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/plugins/bootstrap/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/plugins/font-awesome/css/font-awesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/plugins/icomoon/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/plugins/uniform/css/default.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/plugins/switchery/switchery.min.css') }}" />
+
+    <!-- nvd3 plugin -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/plugins/nvd3/nv.d3.min.css') }}" />
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/css/styles.css') }}" />
+
+
+    <!-- include summernote css/js -->
+    <!-- include libraries(jQuery, bootstrap) -->
+
+
+</head>
+
+<body>
+    <!-- start page loading -->
+    <div id="preloader">
+        <div class="row loader">
+            <div class="loader-icon"></div>
+        </div>
+    </div>
+    <!-- end page loading -->
+
+    <div class="page-container">
+        {% include 'admin/section/sidebar.html'%}
+        <div class="page-content">
+            {% include 'admin/section/header.html'%}
+            <div class="page-inner">
+                <div class="page-title">
+                    <h3 class="breadcrumb-header">Dashboard</h3>
+                </div>
+                <div class="main-wrapper">
+                    {% block body %}
+                        
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- all js include start -->
+
+    <!-- jQuery -->
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+        });
+    </script>
+
+    <script src="{{ url_for('static', filename='admin/plugins/jquery/jquery-3.1.0.min.js') }}"></script>
+
+    <!-- bootstrap -->
+    <script src="{{ url_for('static',filename='admin/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- slimscroll -->
+    <script src="{{ url_for('static', filename='admin/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+    <!-- uniform -->
+    <script src="{{ url_for('static', filename='admin/plugins/uniform/js/jquery.uniform.standalone.js') }}"></script>
+
+    <!-- switchery -->
+    <script src="{{ url_for('static', filename='admin/plugins/switchery/switchery.min.js') }}"></script>
+
+    <!-- chartjs -->
+    <script src="{{ url_for('static', filename='admin/plugins/chartjs/chart.min.js') }}"></script>
+
+    <!-- d3.min -->
+    <script src="{{ url_for('static', filename='admin/plugins/d3/d3.min.js') }}"></script>
+
+    <!-- nv.d3.min -->
+    <script src="{{ url_for('static', filename='admin/plugins/nvd3/nv.d3.min.js') }}"></script>
+
+    <!-- float chart -->
+    <script src="{{ url_for('static', filename='admin/plugins/flot/jquery.flot.min.js') }}"></script>
+
+    <!-- float time -->
+    <script src="{{ url_for('static', filename='admin/plugins/flot/jquery.flot.time.min.js') }}"></script>
+
+    <!-- float symbol -->
+    <script src="{{ url_for('static', filename='admin/plugins/flot/jquery.flot.symbol.min.js') }}"></script>
+
+    <!-- float resize -->
+    <script src="{{ url_for('static', filename='admin/plugins/flot/jquery.flot.resize.min.js') }}"></script>
+
+    <!-- float tooltip -->
+    <script src="{{ url_for('static', filename='admin/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
+
+    <!-- float pie -->
+    <script src="{{ url_for('static', filename='admin/plugins/flot/jquery.flot.pie.min.js') }}"></script>
+
+    <!-- float pie -->
+    <script src="{{ url_for('static', filename='admin/js/pages/dashboard.js') }}"></script>
+
+    <!-- custom scripts -->
+    <script src="{{ url_for('static', filename='admin/js/main.js') }}"></script>
+
+
+
+    <!-- all js include end -->
+
+</body>

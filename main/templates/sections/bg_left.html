@@ -1,0 +1,25 @@
+                    <!-- start left side section -->
+                    <div class="col-lg-4 col-md-12 padding-50px-right md-padding-30px-right sm-padding-15px-right order-2 order-lg-1">
+
+                        <!-- start services -->
+                        <div class="services-single-left-box">
+                            <h6 class="font-weight-700 font-size16 sm-font-size14 text-uppercase left-title margin-20px-bottom">BilgilendirmelerS</h6>
+                            <div class="services-single-menu bg-light-gray margin-30px-bottom sm-margin-25px-bottom">
+                                <ul class="no-margin">
+                                    {% for m in models %}
+                                        {% if m.id == id %}
+                                            <li class="active"><a href="/bilgilendirme/{{ m.id }}">{{ m.title }}</a></li>
+                                        {% else %}
+                                            <li><a href="/bilgilendirme/{{ m.id }}">{{ m.title }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end services -->
+
+                        {% include 'sections/hwch.html' %}
+
+
+                    </div>
+                    <!-- end left side section -->
