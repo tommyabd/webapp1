@@ -82,13 +82,12 @@ def ongrid_info(name,id,filename):
     data1 = model.gyetuketimi/365/model.gesygsaati
     data2 = model.sozlemegucu
 
-    mesage = "{}".format(filename)
-    server = smtplib.SMTP('smtp.gmail.com')
-    server.starttls()
-    server.login("qurdalamag@gmail.com", "Parol555")
-    server.sendmail("qurdalamag@gmail.com","tamerlan.abdullayev23@gmail.com", mesage)
-
-    return render_template('OnGrid_Info.html', data1=data1, data2=data2, content=content, filename=filename, title="Projelendirme")
+    # mesage = "{}".format(filename)
+    # server = smtplib.SMTP('smtp.gmail.com')
+    # server.starttls()
+    # server.login("qurdalamag@gmail.com", "Parol555")
+    # server.sendmail("qurdalamag@gmail.com","tamerlan.abdullayev23@gmail.com", mesage)
+    # return render_template('OnGrid_Info.html', data1=data1, data2=data2, content=content, filename=filename, title="Projelendirme")
 
 @app.route('/offgrid', methods=['GET','POST'])
 def offgrid():
