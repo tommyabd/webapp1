@@ -8,7 +8,6 @@ import smtplib
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'C:\OSPanel\domains\GQSolar\main\static\img'
-app.config['XLSX_FOLDER'] = 'C:\OSPanel\domains\GQSolar\main\excel'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = '5209a08cfb7acebb31ae9915' 
