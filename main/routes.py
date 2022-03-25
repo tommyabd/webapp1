@@ -87,7 +87,7 @@ def ongrid_info(name,id,filename):
     # server.starttls()
     # server.login("qurdalamag@gmail.com", "Parol555")
     # server.sendmail("qurdalamag@gmail.com","tamerlan.abdullayev23@gmail.com", mesage)
-    # return render_template('OnGrid_Info.html', data1=data1, data2=data2, content=content, filename=filename, title="Projelendirme")
+    return render_template('OnGrid_Info.html', data1=data1, data2=data2, content=content, filename=filename, title="Projelendirme")
 
 @app.route('/offgrid', methods=['GET','POST'])
 def offgrid():
