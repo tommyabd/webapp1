@@ -35,7 +35,7 @@ def pr_info(id):
 @app.route('/ongrid', methods=['GET', 'POST'])
 def ongrid():
     if request.method == "POST":
-        file  = load_workbook(url_for('static', filename='excel\BaseXlsx\Ongrid_Hesap_Program.xlsx'))
+        file  = load_workbook(url_for('static', filename='excel/BaseXlsx/ngrid_Hesap_Program.xlsx'))
         sheet = file.active
 
         GecenYilkiEnerjiTuketimi = request.form.get('gyetuketimi')
@@ -94,7 +94,7 @@ def ongrid_info(name,id,filename):
 def offgrid():
     content = OnGridText.query.all()
     if request.method == "POST":
-        file = load_workbook(url_for('static',filename='excel\BaseXlsx\Ongrid_Hesap_Program.xlsx'))
+        file = load_workbook(url_for('static',filename='excel/BaseXlsx/Ongrid_Hesap_Program.xlsx'))
         sheet = file.active
 
         name = request.form.get('isim')
