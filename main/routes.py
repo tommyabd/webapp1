@@ -93,7 +93,7 @@ def ongrid_info(name,id,filename):
 def offgrid():
     content = OnGridText.query.all()
     if request.method == "POST":
-        file = load_workbook('main\static\excel\BaseXlsx\Offgrid_Hesap_Makinam.xlsx')
+        file = load_workbook(url_for('static',filename='excel\BaseXlsx\Ongrid_Hesap_Program.xlsx'))
         sheet = file.active
 
         name = request.form.get('isim')
