@@ -34,7 +34,7 @@ def pr_info(id):
 @app.route('/ongrid', methods=['GET', 'POST'])
 def ongrid():
     if request.method == "POST":
-        file  = load_workbook('C:\OSPanel\domains\GQSolar\main\excel\BaseXlsx\Ongrid_Hesap_Program.xlsx')
+        file  = load_workbook('main\static\excel\BaseXlsx\Ongrid_Hesap_Program.xlsx')
         sheet = file.active
 
         GecenYilkiEnerjiTuketimi = request.form.get('gyetuketimi')
@@ -50,7 +50,7 @@ def ongrid():
         sheet['F6'] = int(SozlesmeGucu)
         sheet['F9'] = int(EnerjiAlimVeSatimBedeli)
         sheet['H23'] = int(alan)
-        file.save(os.path.join('C:\OSPanel\domains\GQSolar\main\excel', '{}.xlsx'.format(name+lastname)))
+        file.save(os.path.join('main\static\excel', '{}.xlsx'.format(name+lastname)))
         filename = '{}.xlsx'.format(name+lastname)
 
         content_to_create = Musteriler(isim = request.form.get('isim'),
@@ -94,7 +94,7 @@ def ongrid_info(name,id,filename):
 def offgrid():
     content = OnGridText.query.all()
     if request.method == "POST":
-        file = load_workbook('C:\OSPanel\domains\GQSolar\main\excel\BaseXlsx\Offgrid_Hesap_Makinam.xlsx')
+        file = load_workbook('main\static\excel\BaseXlsx\Offgrid_Hesap_Makinam.xlsx')
         sheet = file.active
 
         name = request.form.get('isim')
@@ -125,7 +125,7 @@ def offgrid():
             sheet['H{}'.format(4+x)] = datab[3]
             sheet['D{}'.format(4+x)] = int(datab[2])+int(datab[3])
 
-        file.save(os.path.join('C:\OSPanel\domains\GQSolar\main\excel', '{}offgrid.xlsx'.format(name+lastname)))
+        file.save(os.path.join('main\static\excel', '{}offgrid.xlsx'.format(name+lastname)))
 
         return redirect(url_for('offgrid_info', filename='{}offgrid.xlsx'.format(name+lastname)))
     return render_template('OffGrid.html')
@@ -165,7 +165,7 @@ def contactus():
 
 @app.route('/file_download/<filename>')
 def fd(filename):
-    return send_file("C:\OSPanel\domains\GQSolar\main\excel\{}".format(filename), as_attachment=True)
+    return send_file('static\excel\{}'.format(filename),as_attachment=True)
 
 # --------- Admin Panel Routes --------------------
 @app.route('/admin/iletisim', methods=['GET','POST'])
