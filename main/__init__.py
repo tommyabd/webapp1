@@ -18,5 +18,5 @@ migrate = Migrate(app,db)
 ckeditor = CKEditor(app) 
 
 from main import routes
-from main import excel
+
 
