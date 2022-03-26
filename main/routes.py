@@ -33,8 +33,8 @@ def pr_info(id):
 @app.route('/ongrid', methods=['GET', 'POST'])
 def ongrid():
     if request.method == "POST":
-        file  = load_workbook('main static excel BaseXlsx Ongrid_Hesap_Program.xlsx')
-        
+        path = 'main\excel\BaseXlsx'
+        file  = load_workbook(os.path.join(path,'Ongrid_Hesap_Program.xlsx'))
         sheet = file.active
 
         GecenYilkiEnerjiTuketimi = request.form.get('gyetuketimi')
@@ -50,7 +50,7 @@ def ongrid():
         sheet['F6'] = int(SozlesmeGucu)
         sheet['F9'] = int(EnerjiAlimVeSatimBedeli)
         sheet['H23'] = int(alan)
-        file.save(os.path.join('main\static\excel', '{}.xlsx'.format(name+lastname)))
+        file.save(os.path.join('main\excel', '{}.xlsx'.format(name+lastname)))
         filename = '{}.xlsx'.format(name+lastname)
 
         content_to_create = Musteriler(isim = request.form.get('isim'),
