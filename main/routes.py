@@ -4,10 +4,11 @@ from fileinput import filename
 import os
 from main import app
 from main import db
-from flask import render_template,request,redirect, session,url_for,send_file
+from flask import render_template,request,redirect, session,url_for,send_file,flash
 from main.forms import GesCalc1,GesCalc2,MevzuatForm
-from main.models import Mevzuatlar,OnGrid,Projects,Bilgilendirme,Musteriler,OnGridText,iletisim
+from main.models import Mevzuatlar,OnGrid,Projects,Bilgilendirme,Musteriler,OnGridText,iletisim,User
 from openpyxl import load_workbook
+from flask_login import login_required,login_user,logout_user
 import smtplib
 
 
@@ -15,9 +16,6 @@ import smtplib
 def index():
     projects = Projects.query.all()
     return render_template('index.html', projects=projects)
-@app.route('/admin')
-def admin():
-    return render_template('admin/index.html')
 
 @app.route('/projects')
 def projects():
@@ -168,6 +166,34 @@ def fd(filename):
     return send_file('static\excel\{}'.format(filename),as_attachment=True)
 
 # --------- Admin Panel Routes --------------------
+
+@app.route('/admin')
+@login_required
+def admin():
+    return render_template('admin/index.html')
+
+# ---------  Admin Login --------------------------
+@app.route('/login', methods=['GET','POST'])
+def admin_login():
+    if request.method == "POST":
+        username = request.form.get('username')
+        password = request.form.get('password')
+        attempted_user = User.query.filter_by(username=username).first()
+        if attempted_user and attempted_user.check_password_correction(attempted_password=request.form.get('password')):
+            login_user(attempted_user)
+            return redirect(url_for('admin'))
+        else:
+            flash('Kullanıcı İsminizi Veya Şifrenizi Yalnış Girdiniz!')
+
+    return render_template('admin/login.html')
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect('login')
+
+# --------- Iletisim ------------------------------
 @app.route('/admin/iletisim', methods=['GET','POST'])
 def admin_iletisim():
     content = iletisim.query.get(1)

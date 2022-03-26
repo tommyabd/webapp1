@@ -1,14 +1,29 @@
 from sqlalchemy import Integer,String
-from main import db 
+from main import db, loginmanager
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user,current_user
+from main import bcrypt
 
-class User(db.Model):
+@loginmanager.user_loader  
+def load_user(user_id):
+    return User.query.get(user_id)
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String(), nullable=False, unique=False)
-    email = db.Column(db.String(), nullable=True, unique=False)
+    email = db.Column(db.String())
     password_hash = db.Column(db.String(), nullable=False)
 
-    def __repr__(self):
-        return f'User {self.username}'
+    @property
+    def password(self):
+        return self.password
+    
+    @password.setter
+    def password(self, plain_text_password):
+        self.password_hash = bcrypt.generate_password_hash(plain_text_password).decode('utf-8')   
+
+    def check_password_correction(self, attempted_password):
+        return bcrypt.check_password_hash(self.password_hash, attempted_password) 
+            
 
 class HomePage(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -88,16 +103,5 @@ class usrtest1(db.Model):
     lastname = db.Column(db.String())
     rlrl = db.relationship('rltest1', backref='backd')
 
-
-# class OffGridEsya(db.Model):
-#     id = db.Column(db.Integer(), primary_key=True)
-#     esya = db.Column(db.String())
-#     adet = db.Column(db.Integer())
-#     birstw = db.Column(db.Integer())
-#     GundeKullanimSuresi = db.Column(db.Integer())
-#     GunduzKullanimSuresi = db.Column(db.Integer())
-#     AksamKullanimSuresi = db.Column(db.Integer())
-#     Gepa = db.Column(db.Integer())
-#     OffGridId = db.Column(db.Integer())
 
 

@@ -1,0 +1,49 @@
+{% extends 'based.html'%}
+{% block body%}
+{% include 'sections/title.html' %}
+        <!-- start login section -->
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 center-col">
+                        <div class="bg-white padding-30px-all sm-padding-20px-all border border-width-5">
+                            <div class="text-center section-heading">
+                                {% with messages = get_flashed_messages() %}
+                                        {% if messages %}
+                                          <ul class=flashes>
+                                          {% for message in messages %}
+                                            <li class="alert alert-danger">{{ message }}</li>
+                                          {% endfor %}
+                                          </ul>
+                                        {% endif %}
+                                      {% endwith %}
+                                <h4>Login</h4>
+
+                            </div>
+                            <form class="contact-form" method="POST">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" name="username" id="username" required="required" placeholder="User Name *" maxlength="70" class="medium-input">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" name="password" id="password" required="required" placeholder="Password *" maxlength="70" class="medium-input">
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <button class="butn theme medium" type="submit"><span>Login</span></button>
+                                        
+                                        <p class="no-margin float-right"><a href="javascript:void(0)">Forgot Password?</a></p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- end under construction section -->
+
+{% endblock %}
