@@ -33,13 +33,9 @@ def pr_info(id):
 @app.route('/ongrid', methods=['GET', 'POST'])
 def ongrid():
     if request.method == "POST":
-<<<<<<< HEAD
-        path = 'main\excel\BaseXlsx'
-        file  = load_workbook(os.path.join(path,'Ongrid_Hesap_Program.xlsx'))
-=======
-        file  = load_workbook('static\excel\BaseXlsx\Ongrid_Hesap_Program.xlsx')
-        
->>>>>>> 71828bb8a1ebbebc84943c09f257bb19442fc225
+
+
+        file  = load_workbook('excel\BaseXlsx\Ongrid_Hesap_Program.xlsx')
         sheet = file.active
 
         GecenYilkiEnerjiTuketimi = request.form.get('gyetuketimi')
