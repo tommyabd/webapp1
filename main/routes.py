@@ -50,7 +50,7 @@ def ongrid():
         sheet['F6'] = int(SozlesmeGucu)
         sheet['F9'] = int(EnerjiAlimVeSatimBedeli)
         sheet['H23'] = int(alan)
-        file.save(os.path.join('main/excel', '{}.xlsx'.format(name+lastname)))
+        file.save(os.path.join('static', '{}.xlsx'.format(name+lastname)))
         filename = '{}.xlsx'.format(name+lastname)
 
         content_to_create = Musteriler(isim = request.form.get('isim'),
@@ -164,7 +164,7 @@ def contactus():
 
 @app.route('/file_download/<filename>')
 def fd(filename):
-    return send_file(os.path.join('main/static','{}'.format(filename)),as_attachment=True)
+    return send_file(os.path.join('static','{}'.format(filename)),as_attachment=True)
 
 # --------- Admin Panel Routes --------------------
 
