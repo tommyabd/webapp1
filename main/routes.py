@@ -164,7 +164,7 @@ def contactus():
 
 @app.route('/file_download/<filename>')
 def fd(filename):
-    return send_file('static\excel\{}'.format(filename),as_attachment=True)
+    return send_file(os.path.join('static','{}'.format(filename)),as_attachment=True)
 
 # --------- Admin Panel Routes --------------------
 
