@@ -50,7 +50,7 @@ def ongrid():
         sheet['F6'] = int(SozlesmeGucu)
         sheet['F9'] = int(EnerjiAlimVeSatimBedeli)
         sheet['H23'] = int(alan)
-        file.save(os.path.join('main\excel', '{}.xlsx'.format(name+lastname)))
+        file.save(os.path.join('main/excel', '{}.xlsx'.format(name+lastname)))
         filename = '{}.xlsx'.format(name+lastname)
 
         content_to_create = Musteriler(isim = request.form.get('isim'),
