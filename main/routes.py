@@ -34,7 +34,7 @@ def pr_info(id):
 def ongrid():
     if request.method == "POST":
 
-        file  = load_workbook(os.path.join('main/static/','Ongrid_Hesap_Program.xlsx'))
+        file  = load_workbook(os.path.join('main/static','Ongrid_Hesap_Program.xlsx'))
         sheet = file.active
 
         GecenYilkiEnerjiTuketimi = request.form.get('gyetuketimi')
@@ -164,7 +164,7 @@ def contactus():
 
 @app.route('/file_download/<filename>')
 def fd(filename):
-    return send_file(os.path.join('main\static','{}'.format(filename)),as_attachment=True)
+    return send_file(os.path.join('main/static','{}'.format(filename)),as_attachment=True)
 
 # --------- Admin Panel Routes --------------------
 
