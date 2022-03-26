@@ -50,7 +50,7 @@ def ongrid():
         sheet['F6'] = int(SozlesmeGucu)
         sheet['F9'] = int(EnerjiAlimVeSatimBedeli)
         sheet['H23'] = int(alan)
-        file.save(os.path.join('static', '{}.xlsx'.format(name+lastname)))
+        file.save(os.path.join('main/static', '{}.xlsx'.format(name+lastname)))
         filename = '{}.xlsx'.format(name+lastname)
 
         content_to_create = Musteriler(isim = request.form.get('isim'),
@@ -124,7 +124,7 @@ def offgrid():
             sheet['H{}'.format(4+x)] = datab[3]
             sheet['D{}'.format(4+x)] = int(datab[2])+int(datab[3])
 
-        file.save(os.path.join('static', '{}offgrid.xlsx'.format(name+lastname)))
+        file.save(os.path.join('main/static', '{}offgrid.xlsx'.format(name+lastname)))
 
         return redirect(url_for('offgrid_info', filename='{}offgrid.xlsx'.format(name+lastname)))
     return render_template('OffGrid.html')
