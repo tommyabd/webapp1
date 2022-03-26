@@ -33,6 +33,7 @@ def pr_info(id):
 @app.route('/ongrid', methods=['GET', 'POST'])
 def ongrid():
     if request.method == "POST":
+
         file  = load_workbook(os.path.join('main/static/','Ongrid_Hesap_Program.xlsx'))
         sheet = file.active
 
