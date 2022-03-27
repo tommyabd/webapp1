@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 import email
 from email import message
 from fileinput import filename
