@@ -17,18 +17,18 @@ import smtplib
 def index():
     projects = Projects.query.all()
 
-    if request.method == "POST":
-        isim = request.form.get('name')
-        email = request.form.get('email')
-        numara = request.form.get('phone')
-        messages = request.form.get('message')
+    # if request.method == "POST":
+    #     isim = request.form.get('name')
+    #     email = request.form.get('email')
+    #     numara = request.form.get('phone')
+    #     messages = request.form.get('message')
 
-        server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
-        server.starttls()
-        server.login("qurdalamag@gmail.com", "Parol555")
-        server.sendmail("qurdalamag@gmail.com",email,message)
-        flash ('Mesajınız Gönderildi.')
-        return redirect(url_for('index'))
+    #     server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
+    #     server.starttls()
+    #     server.login("qurdalamag@gmail.com", "Parol555")
+    #     server.sendmail("qurdalamag@gmail.com",email,message)
+    #     flash ('Mesajınız Gönderildi.')
+    #     return redirect(url_for('index'))
     return render_template('index.html', projects=projects)
 
 @app.route('/projects')
@@ -197,18 +197,18 @@ def contactus():
 def fd(filename):
     return send_file(os.path.join('static','{}'.format(filename)),as_attachment=True)
 
-@app.route('/send_mail/<int:id>/')
-def send_mail(id):
-    musteri = Musteriler.query.get(id)
+# @app.route('/send_mail/<int:id>/')
+# def send_mail(id):
+#     musteri = Musteriler.query.get(id)
 
-    file = musteri.file
-    message = "https://wepapp1.herokuapp.com/file_download/{}".format(file)
+#     file = musteri.file
+#     message = "https://wepapp1.herokuapp.com/file_download/{}".format(file)
 
-    server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
-    server.starttls()
-    server.login("qurdalamag@gmail.com", "Parol555")
-    server.sendmail("qurdalamag@gmail.com",musteri.email,"GQSolar")
-    return flash('Mail gelmediğı durumda spam sekmesini kontrol etmeyi unutmayın.')
+#     server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
+#     server.starttls()
+#     server.login("qurdalamag@gmail.com", "Parol555")
+#     server.sendmail("qurdalamag@gmail.com",musteri.email,"GQSolar")
+#     return flash('Mail gelmediğı durumda spam sekmesini kontrol etmeyi unutmayın.')
 # --------- Admin Panel Routes --------------------x``
 
 @app.route('/admin')
