@@ -12,7 +12,7 @@
                 <div class="services-single-right margin-15px-top">
                     <h5 class="font-weight-600">{{ content.name }}</h5>
                     <div class="margin-40px-bottom sm-margin-30px-bottom"><img src="{{ url_for('static', filename='img/{}'.format(content.img)) }}" class="border-radius-5 box-shadow-primary" alt="" /></div>
-                </div><p class="margin-30px-bottom sm-margin-20px-bottom width-95">{{ content.explanation }}</p>
+                </div><p class="margin-30px-bottom sm-margin-20px-bottom width-95">{{ content.explanation|safe }}</p>
                 <!-- <div class="row">
                     <div class="inner-title">
                         <h6>Kullanılan Malzemeler</h6>
@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="inner-title margin-20px-top">
                         <h5>Üretim Grafiği</h5>
-                        <p>{{ content.gExplanation }}</p>
+                        <p>{{ content.gExplanation|safe }}</p>
                         <div class="card width-75 sm-width-85 xs-width-100 center-col">
                             <div class="card-body">
                                 <canvas id="chBar" height="200"></canvas>

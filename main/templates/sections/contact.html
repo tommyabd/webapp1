@@ -8,8 +8,8 @@
                             <h4>Bize Ulaşın</h4>
                         </div>
                         <div class="contact-form-box margin-30px-top">
-                            <form method="post" action="bat/rd-mailform.php" class="mailform off2">
-                                <input type="hidden" name="form-type" value="contact">
+                            <form method="post" action="" class="">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <input type="text" name="name" placeholder="İsim:" data-constraints="@LettersOnly @NotEmpty">
@@ -21,7 +21,7 @@
                                         <input type="text" name="email" placeholder="Email:" data-constraints="@Email @NotEmpty">
                                     </div>
                                     <div class="col-md-12">
-                                        <textarea name="message" rows="5" placeholder="Mesajınız:" data-constraints="@NotEmpty"></textarea>
+                                        <textarea maxlength="50" name="message" rows="5" placeholder="Mesajınız:" data-constraints="@NotEmpty"></textarea>
                                     </div>
                                     <div class="mfControls col-md-12">
                                         <button type="submit" class="butn">Gönder</button>

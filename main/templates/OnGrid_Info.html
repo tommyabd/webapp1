@@ -1,7 +1,15 @@
 {% extends 'based.html'%}
 {% block body %}
 {% include 'sections/title.html' %}
-
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+            <li class="alert alert-danger">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
     <!-- start faq section -->
     <section>
         <div class="container">
@@ -23,14 +31,11 @@
                                 <div class="process-step-xs center-holder xs-no-margin-bottom">
                                     <div class="process-step-icon"><span class="text-theme-color  alt-font font-size48 sm-font-size42 xs-font-size36 font-weight-700">03</span></div>
                                     <h3>Sonuç</h3>
-                                /div>
+                                </div>
                         </li>
                     </ul>
                 </div>
-
-
                 <div class="section-heading">
-
                 </div>
                 <div class="row">
                     <div class="col-lg-5 col-md-12 offset-lg-1">
@@ -38,15 +43,15 @@
                             <table class="table table-dark table-striped position-relative box-hover">
                                 <thead>
                                     <tr>
-                                        <th  style="float:right">Değerler</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                    
                                 </tbody>
                             </table>
-                            <div class="alert alert-success alert-dismissible"><a>Mail'inizi Kontrol Etmeyi Unutmayın</a></div>
-                            <div class="btn btn-warning"><a  href="{{ url_for('fd', filename=filename) }}">Dosyanızı Indirmeyi Unutmayın:</a></div>
+                            <div class="alert alert-success alert-dismissible">Buradan Dosyanızı Mail'inize Gödere Bilirsiniz:<p><a class='btn btn-success' href="{{ url_for('send_mail', id=musteri.id) }}">Gönder</a></p></div>
+                            <div class="alert alert-warning alert-dismissible">Dosyanızı Buradan İndire Bilirsiniz: <p><a  href="{{ url_for('fd', filename=filename) }}" class="btn btn-warning"> Indir</a></p></div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 sm-margin-30px-bottom">
@@ -73,6 +78,4 @@
             </div>
     </section>
     <!-- end faq section -->
-                
-
 {% endblock %}

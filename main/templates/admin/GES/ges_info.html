@@ -1,0 +1,49 @@
+{% extends 'admin/based.html' %}
+{% block body %}
+
+<div class="main-wrapper">
+    <div class="card card-white">
+        <div class="card-heading clearfix">
+            <h4 class="card-title">Ges Info</h4>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+            <li class="alert alert-danger">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Isim</th>
+                        <th>Soyisim</th>
+                        <th>Email</th>
+                        <th>Numara</th>
+                        <th>GES Tipi</th>
+                        <th>Dosya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for m in model %}
+                        <tr>
+                            <th scope="row"><a>{{ m.id }}</a></th>
+                            <td><a>{{ m.isim }}</a></td>
+                            <td><a>{{ m.soyisim }}</a></td>
+                            <td><a>{{ m.email }}</a></td>
+                            <td><a>{{ m.numara }}</a></td>
+                            <td><a>{{ m.proje_tipi }}</a></td>
+                            <td><a href="{{ url_for('fd', filename=m.file) }}" style="color:blue">{{ m.file }}</a></td>
+                            <td><a href="/admin/ges_delete/{{ m.id }}" class="btn btn-danger">Sil</a></td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

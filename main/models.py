@@ -103,5 +103,7 @@ class usrtest1(db.Model):
     lastname = db.Column(db.String())
     rlrl = db.relationship('rltest1', backref='backd')
 
-
+class Kur(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    kur = db.Column(db.Integer())
 

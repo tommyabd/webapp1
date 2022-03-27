@@ -1,27 +1,42 @@
-
+from asyncio.windows_events import NULL
 import email
+from email import message
 from fileinput import filename
+from http.client import CONTINUE
 import os
-from main import app
-from main import db
+from main import db,app,secure_filename
 from flask import render_template,request,redirect, session,url_for,send_file,flash
 from main.forms import GesCalc1,GesCalc2,MevzuatForm
-from main.models import Mevzuatlar,OnGrid,Projects,Bilgilendirme,Musteriler,OnGridText,iletisim,User
+from main.models import Mevzuatlar,OnGrid,Projects,Bilgilendirme,Musteriler,OnGridText,iletisim,User,Kur
 from openpyxl import load_workbook
 from flask_login import login_required,login_user,logout_user
 import smtplib
 
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def index():
     projects = Projects.query.all()
+
+    if request.method == "POST":
+        isim = request.form.get('name')
+        email = request.form.get('email')
+        numara = request.form.get('phone')
+        messages = request.form.get('message')
+
+        server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
+        server.starttls()
+        server.login("qurdalamag@gmail.com", "Parol555")
+        server.sendmail("qurdalamag@gmail.com",email,message)
+        flash ('Mesajınız Gönderildi.')
+        return redirect(url_for('index'))
     return render_template('index.html', projects=projects)
 
 @app.route('/projects')
 def projects():
     title = "Projeler"
     projects = Projects.query.all()
-    return render_template('Projects/projects.html', projects=projects,title=title)
+    img = 'itl.cat_energy-wallpaper_3260920.png'
+    return render_template('Projects/projects.html', projects=projects,title=title,img=img)
 
 @app.route('/pr-info/<int:id>')
 def pr_info(id):
@@ -32,6 +47,7 @@ def pr_info(id):
 
 @app.route('/ongrid', methods=['GET', 'POST'])
 def ongrid():
+    img = 'teahub.io-solar-energy-wallpaper-1762643 (2).jpg'
     if request.method == "POST":
 
         file  = load_workbook(os.path.join('main/static','Ongrid_Hesap_Program.xlsx'))
@@ -71,26 +87,24 @@ def ongrid():
                                  alan = alan)
         db.session.add(model_to_create)
         db.session.commit()   
-        return redirect(url_for('ongrid_info', name=name, id=SozlesmeGucu, filename=filename ))
-    return render_template('OnGrid_1.html', title='Projelendirme')
+        return redirect(url_for('ongrid_info', name=name, id=SozlesmeGucu, filename=filename))
+    return render_template('OnGrid_1.html', title='Projelendirme', img=img)
 
 @app.route('/ongrid/<string:name>/<int:id>/<filename>', methods=['GET', 'POST'])
 def ongrid_info(name,id,filename):
+    img = 'teahub.io-solar-energy-wallpaper-1762643 (2).jpg'
     model = OnGrid.query.filter_by(isim=name, sozlemegucu=id).first()
     content = OnGridText.query.all()
+    musteri = Musteriler.query.filter_by(file=filename).first()
 
     data1 = model.gyetuketimi/365/model.gesygsaati
     data2 = model.sozlemegucu
 
-    # mesage = "{}".format(filename)
-    # server = smtplib.SMTP('smtp.gmail.com')
-    # server.starttls()
-    # server.login("qurdalamag@gmail.com", "Parol555")
-    # server.sendmail("qurdalamag@gmail.com","tamerlan.abdullayev23@gmail.com", mesage)
-    return render_template('OnGrid_Info.html', data1=data1, data2=data2, content=content, filename=filename, title="Projelendirme")
+    return render_template('OnGrid_Info.html', data1=data1, data2=data2, content=content, filename=filename, title="Projelendirme",musteri=musteri,img=img)
 
 @app.route('/offgrid', methods=['GET','POST'])
 def offgrid():
+    img = 'teahub.io-solar-energy-wallpaper-1762643 (2).jpg'
     content = OnGridText.query.all()
     if request.method == "POST":
         file = load_workbook(os.path.join('main/static', 'Offgrid_Hesap_Makinam.xlsx'))
@@ -127,11 +141,13 @@ def offgrid():
         file.save(os.path.join('main/static', '{}offgrid.xlsx'.format(name+lastname)))
 
         return redirect(url_for('offgrid_info', filename='{}offgrid.xlsx'.format(name+lastname)))
-    return render_template('OffGrid.html')
+    return render_template('OffGrid.html',img=img, title='Projelendirme')
 
 @app.route('/offgrid_info/<string:filename>', methods=['GET', 'POST'])
 def offgrid_info(filename):
-    model = Musteriler.query.filter_by(file='{}offgird.xlsx'.format(filename))
+    img = 'teahub.io-solar-energy-wallpaper-1762643 (2).jpg'
+    filename2 = '{}offgird.xlsx'.format(filename)
+    musteri = Musteriler.query.filter_by(file=filename).first()
     content = OnGridText.query.all()
     
     # server = smtplib.SMTP('smtp.gmail.com')
@@ -139,34 +155,61 @@ def offgrid_info(filename):
     # server.login("qurdalamag@gmail.com", "Parol555")
     # server.sendmail("qurdalamag@gmail.com","tamerlan.abdullayev23@gmail.com", filename)
 
-    filename2 = '{}offgird.xlsx'.format(filename)
-    return render_template('OffGrid_Info.html', filename=filename, content=content)
+    
+    return render_template('OffGrid_Info.html', filename=filename, content=content,img=img, title='Projelendirme', musteri=musteri)
 
 @app.route('/projelendirme')
 def projelendirme():
-    return render_template('projelendirme.html',title='Projelendirme')
+    img = 'teahub.io-solar-energy-wallpaper-1762643 (2).jpg'
+    return render_template('projelendirme.html',title='Projelendirme', img=img)
 
 @app.route('/mevzuatlar', methods=['GET','POST'])
 def mevzuatlar():
+    img = '9.jpg'
     models = Mevzuatlar.query.all()
-    return render_template('mevzuatlar.html', title='Mevzuatlar', models = models)
+    return render_template('mevzuatlar.html', title='Mevzuatlar', models = models,img=img)
 
 @app.route('/bilgilendirme/<int:id>', methods=['GET'])
 def bilgilendirme(id):
+    img = "10.jpg"
     title = "Bilgilendirmeler"
     models = Bilgilendirme.query.all()
     content = Bilgilendirme.query.get(id)
-    return render_template('bilgilendirme.html', content=content, models=models,title=title)
+    return render_template('bilgilendirme.html', content=content, models=models,title=title,img=img)
 
 @app.route('/bize_ulash' ,methods=['GET','POST'])
 def contactus():
+    if request.method == "POST":
+        isim = request.form.get('name')
+        email = request.form.get('email')
+        numara = request.form.get('phone')
+        messages = request.form.get('message')
+
+        server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
+        server.starttls()
+        server.login("qurdalamag@gmail.com", "Parol555")
+        server.sendmail("qurdalamag@gmail.com",email,"GQSolar")
+        flash ('Mesajınız Gönderildi.')
+        return redirect(url_for('contactus'))
     return render_template('bizeulas.html')
 
 @app.route('/file_download/<filename>')
 def fd(filename):
     return send_file(os.path.join('static','{}'.format(filename)),as_attachment=True)
 
-# --------- Admin Panel Routes --------------------
+@app.route('/send_mail/<int:id>/')
+def send_mail(id):
+    musteri = Musteriler.query.get(id)
+
+    file = musteri.file
+    message = "https://wepapp1.herokuapp.com/file_download/{}".format(file)
+
+    server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
+    server.starttls()
+    server.login("qurdalamag@gmail.com", "Parol555")
+    server.sendmail("qurdalamag@gmail.com",musteri.email,"GQSolar")
+    return flash('Mail gelmediğı durumda spam sekmesini kontrol etmeyi unutmayın.')
+# --------- Admin Panel Routes --------------------x``
 
 @app.route('/admin')
 @login_required
@@ -291,7 +334,6 @@ def pj_update(id):
         fname = f.filename
         if fname:     
             f.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(fname)))
-
         model.name = request.form.get('name')
         model.location = request.form.get('location')
         model.area = request.form.get('area')
@@ -311,7 +353,6 @@ def pj_update(id):
 def  pj_info(id):
     content = Projects.query.get(id)
     return render_template('admin/Projeler/proje_info.html', content=content)
-
 
 
 #----- Bilgilendirme ------------
@@ -391,3 +432,31 @@ def og_delete(id):
     db.session.delete(content)
     db.session.commit()
     return redirect(url_for('admin_ongrid_text'))
+
+#------------ GES ----------------------------------------
+@app.route('/admin/ges')
+def admin_ges():
+    model = Musteriler.query.all()
+    return render_template('admin/GES/ges_info.html', model=model)
+
+@app.route('/admin/ges_delete/<int:id>')
+def ges_delete(id):
+    content = Musteriler.query.get(id)
+    db.session.delete(content)
+    db.session.commit()
+    file_path = os.path.join('main/static', content.file)
+    if file_path:
+        os.remove(file_path)
+    elif not file_path:
+        return flash ('Dosya Bulunamadi')
+    return redirect(url_for('admin_ges'))
+
+@app.route('/admin/kur', methods=['GET','POST'])
+def admin_kur():
+    content = Kur.query.get(1)
+    if request.method == "POST":
+        kur = request.form.get('kur')
+        content.kur = kur
+        db.session.commit()
+        return redirect(url_for('admin_kur'))
+    return render_template('admin/kur.html',content=content)

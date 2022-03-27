@@ -21,10 +21,10 @@
                     <input type="number" class="form-control" name="area" id="area">
 
                     <lable for="exp">Açıklama 1</lable>
-                    <input type="text" class="form-control" name="exp" id="exp">
+                    {{ ckeditor.create(name='exp') }}
 
                     <lable for="grafic">Grafigin Aciklanmasi</lable>
-                    <input type="text" class="form-control" name="grafic" id="grafic">
+                    {{ ckeditor.create(name='grafic') }}
 
                     <lable for="rtm">Paranın Geri Dönüşümü</lable>
                     <input type="number" class="form-control" name="rtm" id="rtm">

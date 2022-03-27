@@ -32,10 +32,8 @@
                 <div class="row">
                     <div class="col-lg-5 col-md-12 offset-lg-1">
                         <div class="feedback-box box-shadow-primary">
-                            <div class="alert alert-danger alert-primary ">
-                                <div class=""><a class="btn btn-danger" style="font-weight:bold" href="{{ url_for('fd', filename=filename) }}">Dosyanızı Indirmeyi Unutmayın:</a></div>
-                            </div>
-                            <div class="alert alert-success alert-dismissible"><a style="font-weight: bold;">Mail'inizi Kontrol Etmeyi Unutmayın</a></div>
+                            <div class="alert alert-success alert-dismissible">Buradan Dosyanızı Mail'inize Gödere Bilirsiniz:<p><a class='btn btn-success' href="{{ url_for('send_mail', id=musteri.id) }}">Gönder</a></p></div>
+                            <div class="alert alert-warning alert-dismissible">Dosyanızı Buradan İndire Bilirsiniz: <p><a  href="{{ url_for('fd', filename=filename) }}" class="btn btn-warning"> Indir</a></p></div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 sm-margin-30px-bottom">

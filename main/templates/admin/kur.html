@@ -1,0 +1,21 @@
+{% extends 'admin/based.html'%}
+{% block body %}
+<div class="card card-white">
+    <div class="card-heading clearfix">
+        <h4 class="card-title">Kur</h4>
+    </div>
+    <div class="card-body">
+        <form action="" method="POST", class="needs-validation" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <div class="form-grozp">
+                        <label for="kur">Kur/Dolar</label>
+                        <input tybe="number" id="kur" class="form-control"  value="{{ content.kur }}" name="kur">
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-danger">
+        </form>
+    </div>
+</div>
+{% endblock %}

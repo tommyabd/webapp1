@@ -45,7 +45,16 @@
     <!-- end page loading -->
 
     <div class="main-wrapper">
-
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+            <li class="alert alert-danger">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        
         {% include 'sections/header.html'%}
                     
         {% block body %}
