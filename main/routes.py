@@ -8,7 +8,7 @@ from flask import render_template,request,redirect, session,url_for,send_file,fl
 from main.forms import GesCalc1,GesCalc2,MevzuatForm
 from main.models import Mevzuatlar,OnGrid,Projects,Bilgilendirme,Musteriler,OnGridText,iletisim,User,Kur,Odul
 from openpyxl import load_workbook
-from flask_login import login_required,login_user,logout_user
+from flask_login import login_required,login_user,logout_user,current_user
 import smtplib
 
 
@@ -229,9 +229,11 @@ def send_mail(id):
 # --------- Admin Panel Routes --------------------x``
 
 @app.route('/admin')
-@login_required
 def admin():
-    return render_template('admin/index.html')
+    if current_user.is_authenticated:
+        return render_template('admin/index.html')
+    else:
+        return redirect(url_for('admin_login'))
 
 # ---------  Admin Login --------------------------
 @app.route('/login', methods=['GET','POST'])
