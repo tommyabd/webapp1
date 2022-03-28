@@ -47,6 +47,8 @@ def pr_info(id):
 @app.route('/ongrid', methods=['GET', 'POST'])
 def ongrid():
     img = 'teahub.io-solar-energy-wallpaper-1762643 (2).jpg'
+    kurModel = Kur.query.get(1)
+    kur = kurModel.kur
     if request.method == "POST":
 
         file  = load_workbook(os.path.join('main/static','Ongrid_Hesap_Program.xlsx'))
@@ -65,6 +67,7 @@ def ongrid():
         sheet['F6'] = int(SozlesmeGucu)
         sheet['F9'] = int(EnerjiAlimVeSatimBedeli)
         sheet['H23'] = int(alan)
+        sheet['J19'] = int(kur)
         file.save(os.path.join('main/static', '{}.xlsx'.format(name+lastname)))
         filename = '{}.xlsx'.format(name+lastname)
 
@@ -105,6 +108,8 @@ def ongrid_info(name,id,filename):
 def offgrid():
     img = 'teahub.io-solar-energy-wallpaper-1762643 (2).jpg'
     content = OnGridText.query.all()
+    kurModel = Kur.query.get(1)
+    kur = kurModel.kur
     if request.method == "POST":
         file = load_workbook(os.path.join('main/static', 'Offgrid_Hesap_Makinam.xlsx'))
         sheet = file.active
