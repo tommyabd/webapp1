@@ -11,4 +11,15 @@
 
         </div>
     </section>
-    <!-- end page title section -->
+    <div class='container'>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+            <li class="alert alert-success">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <!-- end page title section -->
+    </div>

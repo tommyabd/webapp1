@@ -178,6 +178,7 @@ def bilgilendirme(id):
 
 @app.route('/bize_ulash' ,methods=['GET','POST'])
 def contactus():
+    img='teahub.io-solar-panel-wallpaper-1761672.jpg'
     if request.method == "POST":
         isim = request.form.get('name')
         email = request.form.get('email')
@@ -190,7 +191,7 @@ def contactus():
         server.sendmail("qurdalamag@gmail.com",email,"GQSolar")
         flash ('Mesajınız Gönderildi.')
         return redirect(url_for('contactus'))
-    return render_template('bizeulas.html')
+    return render_template('bizeulas.html', title="Bize Ulaşın",img=img)
 
 
 @app.route('/oduller', methods=['GET','POST'])
@@ -205,18 +206,24 @@ def oduller():
 def fd(filename):
     return send_file(os.path.join('static','{}'.format(filename)),as_attachment=True)
 
-@app.route('/send_mail/<int:id>/')
+@app.route('/send_mail/<int:id>')
 def send_mail(id):
     musteri = Musteriler.query.get(id)
 
     file = musteri.file
-    message = "https://wepapp1.herokuapp.com/file_download/{}".format(file)
+    email = musteri.email
+    print("url:{}".format(request.url))
+    message = 'wepapp1.herokuapp.com/file_download/{}'.format(file)
+
 
     server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
     server.starttls()
     server.login("qurdalamag@gmail.com", "Parol555")
-    server.sendmail("qurdalamag@gmail.com",musteri.email,"GQSolar")
-    return flash('Mail gelmediğı durumda spam sekmesini kontrol etmeyi unutmayın.')
+    server.sendmail("qurdalamag@gmail.com",email,message)
+
+    flash ('Dosyanız Mailinize Gönderildi')
+    flash ("Eğer Mail'i Bulamıyorsanız Spam Sekmesini Kontrol Etmeyi Unutmayın")
+    return redirect(request.referrer)
 
 
 # --------- Admin Panel Routes --------------------x``

@@ -1,15 +1,6 @@
 {% extends 'based.html'%}
 {% block body %}
 {% include 'sections/title.html' %}
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <ul class=flashes>
-        {% for message in messages %}
-            <li class="alert alert-danger">{{ message }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    {% endwith %}
     <!-- start faq section -->
     <section>
         <div class="container">
@@ -50,7 +41,7 @@
                                    
                                 </tbody>
                             </table>
-                            <div class="alert alert-success alert-dismissible">Buradan Dosyanızı Mail'inize Gödere Bilirsiniz:<p><a class='btn btn-success' href="{{ url_for('send_mail', id=musteri.id) }}">Gönder</a></p></div>
+                            <div class="alert alert-success alert-dismissible">Buradan Dosyanızı Mail'inize Gödere Bilirsiniz:<p><a class='btn btn-success' href="{{ url_for('send_mail', id=musteri.id,) }}">Gönder</a></p></div>
                             <div class="alert alert-warning alert-dismissible">Dosyanızı Buradan İndire Bilirsiniz: <p><a  href="{{ url_for('fd', filename=filename) }}" class="btn btn-warning"> Indir</a></p></div>
                         </div>
                     </div>
