@@ -70,6 +70,7 @@ def ongrid():
         sheet['J19'] = int(kur)
         file.save(os.path.join('main/static', '{}.xlsx'.format(name+lastname)))
         filename = '{}.xlsx'.format(name+lastname)
+        
 
         content_to_create = Musteriler(isim = request.form.get('isim'),
                                    soyisim = request.form.get('soyisim'),
