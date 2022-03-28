@@ -192,6 +192,7 @@ def contactus():
         return redirect(url_for('contactus'))
     return render_template('bizeulas.html')
 
+
 @app.route('/oduller', methods=['GET','POST'])
 def oduller():
     model = Odul.query.all()
