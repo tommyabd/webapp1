@@ -198,6 +198,8 @@ def oduller():
     img = 'teahub.io-solar-energy-wallpaper-1762643 (2).jpg'
     return render_template('oduller.html',model=model, img=img, title='Ödüllerimiz')
 
+    
+
 @app.route('/file_download/<filename>')
 def fd(filename):
     return send_file(os.path.join('static','{}'.format(filename)),as_attachment=True)
