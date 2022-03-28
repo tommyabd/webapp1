@@ -1,0 +1,30 @@
+{% extends 'admin/based.html'%}
+{% block body %}
+<div class="card card-white">
+    <div class="card-heading clearfix">
+        <h4 class="card-title">Ödül Ekleme</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST", class="needs-validation" enctype = "multipart/form-data" novalidate>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
+
+                    <lable for="name">Ödülün Ismi</lable>
+                    <input type="text" class="form-control" name="name" id="name" value="{{ model.name }}">
+
+                    <label for="photo">Foto</label>
+                    <input type="file", name="photo", id="photo">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <button type="Submit" class="btn btn-warning">Kaydet</button>
+                </div>
+
+            </div>
+            
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

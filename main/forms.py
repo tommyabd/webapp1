@@ -35,4 +35,7 @@ class MevzuatForm(FlaskForm):
     text = TextAreaField(label='Text',validators=[DataRequired()])
     submit = SubmitField()
 
-
+class OdulForm(FlaskForm):
+    name = StringField(label='Name')
+    file = StringField(label='File')
+    submit = SubmitField()

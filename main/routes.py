@@ -6,7 +6,7 @@ import os
 from main import db,app,secure_filename
 from flask import render_template,request,redirect, session,url_for,send_file,flash
 from main.forms import GesCalc1,GesCalc2,MevzuatForm
-from main.models import Mevzuatlar,OnGrid,Projects,Bilgilendirme,Musteriler,OnGridText,iletisim,User,Kur
+from main.models import Mevzuatlar,OnGrid,Projects,Bilgilendirme,Musteriler,OnGridText,iletisim,User,Kur,Odul
 from openpyxl import load_workbook
 from flask_login import login_required,login_user,logout_user
 import smtplib
@@ -192,22 +192,30 @@ def contactus():
         return redirect(url_for('contactus'))
     return render_template('bizeulas.html')
 
+@app.route('/oduller', methods=['GET','POST'])
+def oduller():
+    model = Odul.query.all()
+    img = 'teahub.io-solar-energy-wallpaper-1762643 (2).jpg'
+    return render_template('oduller.html',model=model, img=img, title='Ödüllerimiz')
+
 @app.route('/file_download/<filename>')
 def fd(filename):
     return send_file(os.path.join('static','{}'.format(filename)),as_attachment=True)
 
-# @app.route('/send_mail/<int:id>/')
-# def send_mail(id):
-#     musteri = Musteriler.query.get(id)
+@app.route('/send_mail/<int:id>/')
+def send_mail(id):
+    musteri = Musteriler.query.get(id)
 
-#     file = musteri.file
-#     message = "https://wepapp1.herokuapp.com/file_download/{}".format(file)
+    file = musteri.file
+    message = "https://wepapp1.herokuapp.com/file_download/{}".format(file)
 
-#     server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
-#     server.starttls()
-#     server.login("qurdalamag@gmail.com", "Parol555")
-#     server.sendmail("qurdalamag@gmail.com",musteri.email,"GQSolar")
-#     return flash('Mail gelmediğı durumda spam sekmesini kontrol etmeyi unutmayın.')
+    server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
+    server.starttls()
+    server.login("qurdalamag@gmail.com", "Parol555")
+    server.sendmail("qurdalamag@gmail.com",musteri.email,"GQSolar")
+    return flash('Mail gelmediğı durumda spam sekmesini kontrol etmeyi unutmayın.')
+
+
 # --------- Admin Panel Routes --------------------x``
 
 @app.route('/admin')
@@ -333,6 +341,7 @@ def pj_update(id):
         fname = f.filename
         if fname:     
             f.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(fname)))
+            model.img = fname
         model.name = request.form.get('name')
         model.location = request.form.get('location')
         model.area = request.form.get('area')
@@ -342,7 +351,7 @@ def pj_update(id):
         model.rtMoney = request.form.get('rtm')
         model.pPower = request.form.get('ppower')
         model.profit = request.form.get('profit')
-        model.img = fname
+        
 
         db.session.commit()
         return redirect(url_for('admin_projeler'))
@@ -459,3 +468,49 @@ def admin_kur():
         db.session.commit()
         return redirect(url_for('admin_kur'))
     return render_template('admin/kur.html',content=content)
+
+#--------------- Admin Oduller ----------------------------------
+@app.route('/admin/oduller')
+def admin_oduller():
+    model = Odul.query.all()
+    return render_template('admin/Oduller/oduller.html', model=model)
+
+@app.route('/admin/oduller/add', methods=['GET','POST'])
+def oduller_add():
+    if request.method == "POST":
+        name = request.form.get('name')
+        f = request.files['file']
+        fname = f.filename
+        if fname:     
+            f.save(os.path.join('main/static/img/Oduller',secure_filename(fname)))
+        content_to_create = Odul(name=name,file=fname)
+        db.session.add(content_to_create)
+        db.session.commit()
+        return redirect(url_for('admin_oduller'))
+    return render_template('admin/Oduller/oduller_add.html')
+
+@app.route('/admin/oduller/add/<int:id>', methods=['GET','POST'])
+def oduller_update(id):
+    model = Odul.query.get(id)
+    if request.method == "POST":
+        f = request.files['file']
+        fname = f.filename
+        if fname:     
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(fname)))
+            model.file = fname
+        model.isim = request.form.get('isim')
+        db.session.commit()
+        return redirect(url_for('admin_oduller'))
+    return render_template('admin/Oduller/oduller_update.html', model=model)
+
+@app.route('/admin/oduller/<int:id>', methods=['GET','POST'])
+def oduller_delete(id):
+    model = Odul.query.get(id)
+    file_path = os.path.join('main/static/img/Oduller', model.file)
+    if file_path:
+        os.remove(file_path)
+    db.session.delete(model)
+    db.session.commit()
+    
+    return redirect(url_for('admin_oduller'))
+

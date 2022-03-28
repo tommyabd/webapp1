@@ -1,29 +1,28 @@
 {% extends 'admin/based.html' %}
-{% block body %}
-
+{% block body%}
 <div class="main-wrapper">
     <div class="card card-white">
         <div class="card-heading clearfix">
-            <h4 class="card-title">Bilgilendirme</h4>
+            <h4 class="card-title">Ödüller</h4>
         </div>
         <div class="card-body">
             <table class="table">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Başlık</th>
-                        <th>Metin</th>
-                        <th><a href="{{ url_for('bg_create') }}" class="btn btn-primary">Bilgilendirme Ekle</a></th>
+                        <th>Isim</th>
+                        <th> Dosya</th>
+                        <th><a href="{{ url_for('oduller_add') }}" class="btn btn-primary">Proje Ekle</a></th>
                     </tr>
                 </thead>
                 <tbody>
                         {% for m in model %}
                         <tr>
                             <th scope="row"><a>{{ m.id }}</a></th>
-                            <td><a>{{ m.title }}</a></td>
-                            <td><a>{{ m.text }}</a></td>
-                            <td><a href="/admin/bg_delete/{{ m.id }}" class="btn btn-danger">Sil</a>
-                            <a href="/admin/bg_update/{{ m.id }}" class="btn btn-warning">Güncelle</a></td>
+                            <td><a>{{ m.name }}</a></td>
+                            <td><a>{{ m.file }}</a></td>
+                            <td><a href="{{url_for('oduller_delete', id=m.id)}}" class="btn btn-danger">Sil</a>
+                                <a href="{{url_for('oduller_update', id=m.id)}}" class="btn btn-warning">Güncelle</a></td>
                         </tr>
                         {% endfor %}
                 </tbody>

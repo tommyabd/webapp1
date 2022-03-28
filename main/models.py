@@ -107,3 +107,7 @@ class Kur(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     kur = db.Column(db.Integer())
 
+class Odul(db.Model):
+    id = db.Column(db.Integer(),primary_key=True)
+    name = db.Column(db.String())   
+    file = db.Column(db.String())
