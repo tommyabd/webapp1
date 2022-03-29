@@ -11,15 +11,8 @@
 
                         <div class="padding-30px-left sm-no-padding">
                             <h4 class="sm-margin-lr-auto xs-width-100">GES Sistemi</h4>
-                            <p>Evinizi veya işletmenizi GES sistemine geçirmeniz,size ve dünyamıza çok iyi gelecek.</p>
-                            <ul class="list-style-3">
-                                <li>Kolay Başvuru</li>
-                                <li>Hızlı İşlem</li>
-                                <li>Güvenli Kurulum</li>
-                                <li>Kısa Sürede Yatırımın Geri Dönüşü</li>
-                                <li>Temiz Enerji</li>
-                                
-                            </ul>
+                            <p>{{ content.aboutTwo|safe}}</p>
+                            
                             <a class="butn theme margin-10px-top" href="{{ url_for('bilgilendirme', id=1) }}"><span>Daha Fazlası</span></a>
                         </div>
 

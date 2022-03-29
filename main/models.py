@@ -1,3 +1,4 @@
+from concurrent.futures import process
 from sqlalchemy import Integer,String
 from main import db, loginmanager
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user,current_user
@@ -111,3 +112,11 @@ class Odul(db.Model):
     id = db.Column(db.Integer(),primary_key=True)
     name = db.Column(db.String())   
     file = db.Column(db.String())
+
+class MainPage(db.Model):
+    id =db.Column(db.Integer(), primary_key=True)
+    aboutOne = db.Column(db.String())
+    aboutTwo = db.Column(db.String())
+    processOne = db.Column(db.String())
+    processTwo = db.Column(db.String())
+    processTree = db.Column(db.String())

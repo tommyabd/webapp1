@@ -1,0 +1,39 @@
+{% extends 'admin/based.html'%}
+{% block body %}
+{{ ckeditor.load() }}
+<div class="card card-white">
+    <div class="card-heading clearfix">
+        <h4 class="card-title">Proje Ekleme</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST", class="needs-validation" enctype = "multipart/form-data" novalidate>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
+
+                    <div for="aboutOne"class="alert alert-dark">Bölge 1</div>
+                    <a>{{ ckeditor.create(name='aboutOne', value=model.aboutOne) }}</a>
+
+                    <div for="processOne" class="alert alert-dark">Süreç 1</div>
+                    {{ ckeditor.create(name='processOne', value=model.processOne) }}
+
+                    <div for="processTwo" class="alert alert-dark">Süreç 2</div>
+                    {{ ckeditor.create(name='processTwo', value=model.processTwo) }}
+
+                    <div for="processTree" class="alert alert-dark">Süreç 3</div>
+                    {{ ckeditor.create(name='processTree', value=model.processTree) }}
+
+                    <div for="aboutTwo" class="alert alert-dark">Bölge 3</div>
+                    {{ ckeditor.create(name='aboutTwo', value=model.aboutTwo) }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <button type="Submit" class="btn btn-warning">Kaydet</button>
+                </div>
+
+            </div>
+            
+        </form>
+
+    </div>
+</div>
+{% endblock %}

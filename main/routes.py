@@ -6,8 +6,7 @@ import os
 from main import db,app,secure_filename
 from flask import render_template,request,redirect, session,url_for,send_file,flash
 from main.forms import GesCalc1,GesCalc2,MevzuatForm
-from main.models import Mevzuatlar,OnGrid,Projects,Bilgilendirme,Musteriler,OnGridText,iletisim,User,Kur,Odul
-from openpyxl import load_workbook
+from main.models import Mevzuatlar,OnGrid,Projects,Bilgilendirme,Musteriler,OnGridText,iletisim,User,Kur,Odul,MainPage
 from flask_login import login_required,login_user,logout_user,current_user
 import smtplib
 
@@ -15,20 +14,9 @@ import smtplib
 @app.route('/', methods=['GET','POST'])
 def index():
     projects = Projects.query.all()
+    content = MainPage.query.get(1)
 
-    # if request.method == "POST":
-    #     isim = request.form.get('name')
-    #     email = request.form.get('email')
-    #     numara = request.form.get('phone')
-    #     messages = request.form.get('message')
-
-    #     server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
-    #     server.starttls()
-    #     server.login("qurdalamag@gmail.com", "Parol555")
-    #     server.sendmail("qurdalamag@gmail.com",email,message)
-    #     flash ('Mesajınız Gönderildi.')
-    #     return redirect(url_for('index'))
-    return render_template('index.html', projects=projects)
+    return render_template('index.html', projects=projects,content=content)
 
 @app.route('/projects')
 def projects():
@@ -70,7 +58,7 @@ def ongrid():
         sheet['J19'] = int(kur)
         file.save(os.path.join('main/static', '{}.xlsx'.format(name+lastname)))
         filename = '{}.xlsx'.format(name+lastname)
-        
+     
 
         content_to_create = Musteriler(isim = request.form.get('isim'),
                                    soyisim = request.form.get('soyisim'),
@@ -128,6 +116,7 @@ def offgrid():
 
         mesage = "{}".format(filename)
         
+
 
         for i in range(4,15):
             datab = []
@@ -532,3 +521,15 @@ def oduller_delete(id):
     
     return redirect(url_for('admin_oduller'))
 
+@app.route('/admin/anasayfa', methods=['GET','POST'])
+def anasayfa():
+    model = MainPage.query.get(1)
+    if request.method == "POST":
+        model.aboutOne = request.form.get('aboutOne')
+        model.aboutTwo = request.form.get('aboutTwo')
+        model.processOne = request.form.get('processOne')
+        model.processTwo = request.form.get('processTwo')
+        model.processTree = request.form.get('processTree')
+        db.session.commit()
+        return redirect(url_for('anasayfa'))
+    return render_template('admin/AnaSayfa/anasayfa.html', model=model)
