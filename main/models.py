@@ -120,3 +120,11 @@ class MainPage(db.Model):
     processOne = db.Column(db.String())
     processTwo = db.Column(db.String())
     processTree = db.Column(db.String())
+
+class Messages(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String())
+    lastname = db.Column(db.String())
+    email = db.Column(db.String())
+    phone = db.Column(db.String())
+    message = db.Column(db.String())

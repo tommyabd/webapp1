@@ -9,13 +9,18 @@
                         <div class="page-sidebar-menu">
                             <ul class="accordion-menu">
                                 <li>
+                                    <a href="{{ url_for('admin') }}" >
+                                        <i class="menu-icon icon-inbox"></i><span>Mesajlar</span>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="{{ url_for('anasayfa') }}" >
                                         <i class="menu-icon icon-home4"></i><span>AnaSayfa</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ url_for('admin_ges') }}">
-                                        <i class="menu-icon icon-inbox"></i><span>Müşteriler</span>
+                                        <i class="menu-icon icon-man"></i><span>Müşteriler</span>
                                     </a>
                                 </li>
                                 <li>
@@ -34,6 +39,11 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="{{ url_for('admin_oduller') }}">
+                                        <i class="menu-icon icon-info"></i><span>Ödüller</span><i></i>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="{{ url_for('admin_ongrid_text') }}">
                                         <i class="menu-icon icon-radio_button_unchecked"></i><span>OnGrid Text</span><i></i>
                                     </a>
@@ -45,14 +55,10 @@
                                 </li>
                                 <li>
                                     <a href="{{ url_for('admin_kur') }}">
-                                        <i class="menu-icon icon-info"></i><span>Kur</span><i></i>
+                                        <i class="menu-icon icon-list"></i><span>Kur</span><i></i>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="{{ url_for('admin_oduller') }}">
-                                        <i class="menu-icon icon-info"></i><span>Ödüller</span><i></i>
-                                    </a>
-                                </li>
+
                                 <li class="menu-divider"></li>
 
                             </ul>

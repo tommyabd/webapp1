@@ -6,7 +6,7 @@ import os
 from main import db,app,secure_filename
 from flask import render_template,request,redirect, session,url_for,send_file,flash
 from main.forms import GesCalc1,GesCalc2,MevzuatForm
-from main.models import Mevzuatlar,OnGrid,Projects,Bilgilendirme,Musteriler,OnGridText,iletisim,User,Kur,Odul,MainPage
+from main.models import Mevzuatlar,OnGrid,Projects,Bilgilendirme,Musteriler,OnGridText,iletisim,User,Kur,Odul,MainPage,Messages
 from flask_login import login_required,login_user,logout_user,current_user
 import smtplib
 
@@ -15,7 +15,17 @@ import smtplib
 def index():
     projects = Projects.query.all()
     content = MainPage.query.get(1)
-
+    if request.method == "POST":
+        conent_to_create = Messages(
+        name = request.form.get('name'),
+        lastname = request.form.get('lastname'),
+        email = request.form.get('email'),
+        phone = request.form.get('phone'),
+        message = request.form.get('message'))
+        db.session.add(conent_to_create)
+        db.session.commit()
+        flash ('Mesajınız Gönderildi')
+        return redirect(url_for('index'))
     return render_template('index.html', projects=projects,content=content)
 
 @app.route('/projects')
@@ -175,16 +185,15 @@ def bilgilendirme(id):
 def contactus():
     img='teahub.io-solar-panel-wallpaper-1761672.jpg'
     if request.method == "POST":
-        isim = request.form.get('name')
-        email = request.form.get('email')
-        numara = request.form.get('phone')
-        messages = request.form.get('message')
-
-        server = smtplib.SMTP('smtp.gmail.com', 587, timeout=120)
-        server.starttls()
-        server.login("qurdalamag@gmail.com", "Parol555")
-        server.sendmail("qurdalamag@gmail.com",email,"GQSolar")
-        flash ('Mesajınız Gönderildi.')
+        conent_to_create = Messages(
+            name = request.form.get('name'),
+            lastname = request.form.get('lastname'),
+            email = request.form.get('email'),
+            phone = request.form.get('phone'),
+            message = request.form.get('message'))
+        db.session.add(conent_to_create)
+        db.session.commit()
+        flash ('Mesajınız Gönderildi')
         return redirect(url_for('contactus'))
     return render_template('bizeulas.html', title="Bize Ulaşın",img=img)
 
@@ -225,8 +234,9 @@ def send_mail(id):
 
 @app.route('/admin')
 def admin():
+    model = Messages.query.all()
     if current_user.is_authenticated:
-        return render_template('admin/index.html')
+        return render_template('admin/index.html',model=model)
     else:
         return redirect(url_for('admin_login'))
 
@@ -533,3 +543,10 @@ def anasayfa():
         db.session.commit()
         return redirect(url_for('anasayfa'))
     return render_template('admin/AnaSayfa/anasayfa.html', model=model)
+
+@app.route('/admin/messages/del/<int:id>')
+def msg_del(id):
+    content = Messages.query.get(id)
+    db.session.delete(content)
+    db.session.commit()
+    return redirect(url_for('admin'))

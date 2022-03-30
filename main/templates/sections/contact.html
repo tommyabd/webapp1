@@ -11,8 +11,11 @@
                             <form method="post" action="" class="">
                                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <input type="text" name="name" placeholder="İsim:" data-constraints="@LettersOnly @NotEmpty">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" name="lastname" placeholder="Soyisim:" data-constraints="@LettersOnly @NotEmpty">
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" name="phone" placeholder="Telefon Numarası:" data-constraints="@Phone">

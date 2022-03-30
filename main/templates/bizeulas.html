@@ -1,14 +1,5 @@
 {% extends 'based.html' %}
 {% block body %}
 {% include 'sections/title.html'%}
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-  <ul class=flashes>
-  {% for message in messages %}
-    <li class="alert alert-danger">{{ message }}</li>
-  {% endfor %}
-  </ul>
-{% endif %}
-{% endwith %}
 {% include 'sections/contact.html' %}
 {% endblock %}
