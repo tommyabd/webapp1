@@ -26,7 +26,6 @@
                             <td><a>{{ m.phone }}</a></td>
                             <td><a>{{ m.email }}</a></td>
                             <td><a>{{ m.message }}</a></td>
-                            <td><a href="/admin/mevzuat/{{ m.id }}" class="btn btn-success">Bak</a>
                             <a href="{{ url_for('msg_del', id=m.id) }}" class="btn btn-danger">Sil</a>
                         </tr>
                         {% endfor %}
