@@ -26,7 +26,7 @@
                             <td><a>{{ m.phone }}</a></td>
                             <td><a>{{ m.email }}</a></td>
                             <td><a>{{ m.message }}</a></td>
-                            <a href="{{ url_for('msg_del', id=m.id) }}" class="btn btn-danger">Sil</a>
+                            <td><a href="{{ url_for('msg_del', id=m.id) }}" class="btn btn-danger">Sil</a></td>
                         </tr>
                         {% endfor %}
                 </tbody>
