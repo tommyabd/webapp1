@@ -3,6 +3,8 @@ from email import message
 from fileinput import filename
 from http.client import CONTINUE
 import os
+
+from openpyxl import load_workbook
 from main import db,app,secure_filename
 from flask import render_template,request,redirect, session,url_for,send_file,flash
 from main.forms import GesCalc1,GesCalc2,MevzuatForm
