@@ -128,8 +128,6 @@ def offgrid():
 
         mesage = "{}".format(filename)
         
-
-
         for i in range(4,15):
             datab = []
             datab += [request.form.get('{}adet'.format(i))]
@@ -156,10 +154,10 @@ def offgrid_info(filename):
     musteri = Musteriler.query.filter_by(file=filename).first()
     content = OnGridText.query.all()
     
-    # server = smtplib.SMTP('smtp.gmail.com')
-    # server.starttls()
-    # server.login("qurdalamag@gmail.com", "Parol555")
-    # server.sendmail("qurdalamag@gmail.com","tamerlan.abdullayev23@gmail.com", filename)
+    server = smtplib.SMTP('smtp.gmail.com')
+    server.starttls()
+    server.login("qurdalamag@gmail.com", "Parol555")
+    server.sendmail("qurdalamag@gmail.com","tamerlan.abdullayev23@gmail.com", filename)
 
     
     return render_template('OffGrid_Info.html', filename=filename, content=content,img=img, title='Projelendirme', musteri=musteri)
@@ -199,14 +197,11 @@ def contactus():
         return redirect(url_for('contactus'))
     return render_template('bizeulas.html', title="Bize Ulaşın",img=img)
 
-
 @app.route('/oduller', methods=['GET','POST'])
 def oduller():
     model = Odul.query.all()
     img = 'teahub.io-solar-energy-wallpaper-1762643 (2).jpg'
     return render_template('oduller.html',model=model, img=img, title='Ödüllerimiz')
-
-    
 
 @app.route('/file_download/<filename>')
 def fd(filename):
@@ -254,7 +249,7 @@ def admin_login():
             return redirect(url_for('admin'))
         else:
             flash('Kullanıcı İsminizi Veya Şifrenizi Yalnış Girdiniz!')
-
+            return redirect(url_for('admin_login'))
     return render_template('admin/login.html')
 
 @app.route("/logout")
@@ -315,7 +310,6 @@ def mv_info(id):
     content = model.query.get(id)
     return render_template('admin/Mevzuatlar/mevzuat_info.html', content=content)
 
-
 # --------- Projeler-------------------------
 @app.route('/admin/projeler')
 def admin_projeler():
@@ -329,7 +323,7 @@ def pj_create():
         f = request.files['photo']
         fname = f.filename
         if fname:     
-            f.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(fname)))
+            f.save(os.path.join('main/static/img ',secure_filename(fname)))
         content_to_create = Projects(name = request.form.get('name'),
                                     location = request.form.get('location'),
                                     area = request.form.get('area'),
@@ -380,7 +374,6 @@ def pj_update(id):
 def  pj_info(id):
     content = Projects.query.get(id)
     return render_template('admin/Projeler/proje_info.html', content=content)
-
 
 #----- Bilgilendirme ------------
 @app.route('/admin/bilgilendirme')
@@ -445,7 +438,7 @@ def og_create():
 
 @app.route('/admin/bg_update/<int:id>', methods=['GET','POST'])
 def og_update(id):
-    content = OnGridText.query.get(id)
+    content = OnGridText.query.get(id)  
     if request.method == "POST":
         content.title = request.form.get('title')
         content.text = request.form.get('ckeditor')
